@@ -1,1 +1,16 @@
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=깃허브이름&show_icons=true&theme=테마)
+name: Update gist
+on:
+  repository_dispatch:
+    types: [build-event]
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  update-gist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update gist
+        uses: maxam2017/productive-box@master
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID }}
+          TIMEZONE: Asia/Seoul
